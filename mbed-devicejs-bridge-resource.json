@@ -1,0 +1,5 @@
+{
+    "name": "MbedDeviceJSBridgeInstance",
+    "version": "0.0.1",
+    "interfaces": [ "MbedDeviceJSBridgeInterface" ]
+}

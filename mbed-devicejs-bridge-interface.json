@@ -1,0 +1,26 @@
+{
+    "name": "MbedDeviceJSBridgeInterface",
+    "version": "0.0.1",
+    "commands": {
+        "setMbedAPIKey": {
+            "arguments": [ {"type": "string"} ],
+            "returns": { "type": "object" }            
+        },
+        "getDeviceMap": { 
+            "arguments": [ ],
+            "returns": { "type": "object" }
+        },
+        "getEdgeClientStatus": {
+            "arguments": [],
+            "returns": { "type": "object" }
+        }
+    },
+    "state": { },
+    "events": { 
+        "mapUpdate" : {
+            "schema": {
+                "type": "object"
+            }
+        }
+    }
+}
