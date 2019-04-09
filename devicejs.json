@@ -8,17 +8,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WigWagCo/mbed-devicejs-bridge.git"
+    "url": "git+https://github.com/armPelionEdge/mbed-devicejs-bridge.git"
   },
   "author": "",
   "license": "SEE LICENSE IN LICENSE.md",
   "bugs": {
-    "url": "https://github.com/WigWagCo/mbed-devicejs-bridge/issues"
+    "url": "https://github.com/armPelionEdge/mbed-devicejs-bridge/issues"
   },
-  "homepage": "https://github.com/WigWagCo/mbed-devicejs-bridge#readme",
+  "homepage": "https://github.com/armPelionEdge/mbed-devicejs-bridge#readme",
   "dependencies": {
-    "devjs-utils": "git+ssh://github.com/WigWagCo/devjs-utils.git",
-    "devjs-configurator": "git+ssh://git@github.com/WigWagCo/devjs-configurator.git#maestroRunner",
+    "devjs-utils": "git+ssh://github.com/armPelionEdge/devjs-utils.git",
+    "devjs-configurator": "git+ssh://git@github.com/armPelionEdge/devjs-configurator.git#master",
     "mbed-cloud-sdk":"*",
     "handlebars": "*",
     "node-wget": "^0.4.2"

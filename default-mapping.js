@@ -1054,7 +1054,7 @@ module.exports = {
                 handlers: {
                     put_pressed: function(Dev,op,route,value){
                         // from:
-                        // https://github.com/WigWagCo/edge-node-modules/blob/master/core-interfaces/facades/button.json
+                        // https://github.com/armPelionEdge/edge-node-modules/blob/master/core-interfaces/facades/button.json
                         // to:
                         // /3347 IPSO "light control"  http://vorto.eclipse.org/resolve/lwm2m/Object/ObjectID/3347
                         DBG("Got Facade/Button 'put_pressed' -> put(",route,value,")")
@@ -1148,7 +1148,7 @@ module.exports = {
                 handlers: {
                     put_dimmer: function(Dev,op,route,value){
                         // from:
-                        // https://github.com/WigWagCo/edge-node-modules/blob/master/core-interfaces/facades/dimmable.json
+                        // https://github.com/armPelionEdge/edge-node-modules/blob/master/core-interfaces/facades/dimmable.json
                         // to:
                         // /3311 IPSO "light control"  http://vorto.eclipse.org/resolve/lwm2m/Object/ObjectID/3311
                         DBG("Got Facade/Dimmable 'put_dimmer' -> put(",route,value,")")
