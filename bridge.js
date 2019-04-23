@@ -492,19 +492,24 @@ EdgeHandler.prototype.setupBridgingByFacades = async function(mappings,interface
                                     DBG("setit() val transformed",val)
 
                                     if (typeof val != 'undefined') {
-                                        let r = mapper.mbed.resources[mapper.deviceJS._statePaths[thismap.deviceJS.state]];
-                                        if(r){  
-                                            (function(r,mapper,path,val,devid){
-                                                DBG("(initSend) Attempting set on mbed path",path,"with val",val,"for dev",devid);
-                                                mapper.mbed.setValue(path,val).then(function(){
-                                                    log.success("(initSend) set mbed path",path,"for",devid,"ok:",val);
-                                                    MbedDeviceStates[devid][thismap.deviceJS.state] = devjsval;
-                                                }).catch(function(err){
-                                                    ERROR("(initSend) Failed to set mbed path",path," value:",val,"devJS id:",devid," --> error:",err);
-                                                })
-                                            })(r,mapper,mapper.deviceJS._statePaths[thismap.deviceJS.state],val,devid);
-                                        } else {
-                                            ERROR("(initSend) Could not get resource from mbed representation of device",devid);
+                                        try {
+                                            let r = mapper.mbed.resources[mapper.deviceJS._statePaths[thismap.deviceJS.state]];
+                                            if(r){
+                                                (function(r,mapper,path,val,devid){
+                                                    DBG("(initSend) Attempting set on mbed path",path,"with val",val,"for dev",devid);
+                                                    mapper.mbed.setValue(path,val).then(function(){
+                                                        log.success("(initSend) set mbed path",path,"for",devid,"ok:",val);
+                                                        MbedDeviceStates[devid][thismap.deviceJS.state] = devjsval;
+                                                    }).catch(function(err){
+                                                        if(err.code && err.code == "ERR_ASSERTION") err = "Assertion error: edge-core disconnected"
+                                                        ERROR("(initSend) Failed to set mbed path",path," value:",val,"devJS id:",devid," --> error:",err);
+                                                    })
+                                                })(r,mapper,mapper.deviceJS._statePaths[thismap.deviceJS.state],val,devid);
+                                            } else {
+                                                ERROR("(initSend) Could not get resource from mbed representation of device",devid);
+                                            }
+                                        } catch(e) {
+                                            ERROR("(initSend) Cant get mbed resource device",devid,"for state",thismap.deviceJS.state,"error:",e);
                                         }
                                     } else {
                                         ERROR("(initSend) Got 'undefined' back from stateSender for",path,"for device",devid);
@@ -587,6 +592,7 @@ var masterStateListener = function(devid,state,devjsval) {
                                 log.success("set mbed path",path,"for",devid,"ok:",val);
                                 MbedDeviceStates[devid][state] = devjsval;
                             }).catch(function(err){
+                                if(err.code && err.code == "ERR_ASSERTION") err = "Assertion error: edge-core disconnected"
                                 ERROR("Failed to set mbed path",path," value:",val,"devJS id:",devid," --> error:",err);
                             })
                         })(r,mapper,mapper.deviceJS._statePaths[state],ret,devid);
@@ -882,6 +888,7 @@ var Bridge = function() {
                                                             log.success("set mbed path",path,"for",devid,"ok:",val);
                                                             MbedDeviceStates[devid][state] = DeviceStates[devid][state];
                                                         }).catch(function(err){
+                                                            if(err.code && err.code == "ERR_ASSERTION") err = "Assertion error: edge-core disconnected"
                                                             ERROR("Failed to set mbed path",path," value:",val,"devJS id:",devid," --> error:",err);
                                                         })
                                                     })(r,mapper,mapper.deviceJS._statePaths[state],ret,devid);
