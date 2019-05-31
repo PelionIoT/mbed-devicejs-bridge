@@ -2020,6 +2020,55 @@ module.exports = {
             }
         },
 
+        'Facades/SignalStrength': function() {
+            // /3370  "ServiceCellStrength" https://devtoolkit.openmobilealliance.org/OEditor/LWMOView?url=http%3A%2F%2Fwww.openmobilealliance.org%2Ftech%2Fprofiles%2Flwm2m%2F3370.xml
+            // /6035  rsrp value Integer
+            return {
+                deviceJS: {
+                    state: 'rssi'
+                },
+                handlers: {
+                    get_rssi: function(Dev) {
+                        DBG("Got Facade/SignalStrength 'get_rssi'")
+                        return Dev.get('rssi')
+                    }
+                },
+                senders: {
+                    send: function(path,val) {
+                        DBG("stateSender -> rssi changed. transforming for mbed. ",path,val)
+                        return val;
+                    }
+                },
+                oma: {
+                    path: '/3370/0/6035',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_rssi',
+                    value: 0,
+                    type: 'Int',
+                    stateSender: 'send',
+                    eventSender: 'send'
+                },
+                static_oma: [
+                    {   // min possible value
+                        path: '/3370/0/5603',
+                        operation: ['GET'],
+                        value: -200
+                    },
+                    {   // max possible value
+                        path: '/3370/0/5604',
+                        operation: ['GET'],
+                        value: 0
+                    },
+                    {   // units
+                        path: '/3370/0/5701',
+                        operation: ['GET'],
+                        value: "rssi"
+                    }
+                ]
+            }
+        },
+
         'Core/Interfaces/FirmwareUpdate': function() {
             return {
                 deviceJS: {
