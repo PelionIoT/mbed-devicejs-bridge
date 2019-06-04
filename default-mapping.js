@@ -2063,7 +2063,7 @@ module.exports = {
                     {   // units
                         path: '/3370/0/5701',
                         operation: ['GET'],
-                        value: "rssi"
+                        value: "dBm"
                     }
                 ]
             }
