@@ -1234,7 +1234,7 @@ module.exports = {
                 // for Edge
                 senders: {
                     state_set: function(path,val) {
-                        DBG("stateSender -> color changed. transforming for mbed. ",path,val)
+                        DBG("stateSender -> hsl changed. transforming for mbed. ",path,val)
                         // should return the transformed value:
                         return "" + val.h + "," + val.s + "," + val.l;
                     }
@@ -2066,6 +2066,642 @@ module.exports = {
                         value: "dBm"
                     }
                 ]
+            }
+        },
+
+        'Facades/CarbonDioxide': function() {
+            return {
+                deviceJS: {
+                    state: 'co2'
+                },
+                handlers: {
+                    get_co2: function(Dev) {
+                        DBG("Got Facade/CarbonDioxide 'get_co2'")
+                        return Dev.get('co2')
+                    }
+                },
+                senders: {
+                    send: function(path,val) {
+                        DBG("stateSender -> co2 changed. transforming for mbed. ",path,val)
+                        return val;
+                    }
+                },
+                oma: {
+                    path: '/3325/0/5700',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_co2',
+                    value: 0,
+                    type: 'Int',
+                    stateSender: 'send',
+                    eventSender: 'send'
+                }
+            }
+        },
+
+        'Facades/TVOC': function() {
+            return {
+                deviceJS: {
+                    state: 'tvoc'
+                },
+                handlers: {
+                    get_tvoc: function(Dev) {
+                        DBG("Got Facade/TVOC 'get_tvoc'")
+                        return Dev.get('tvoc')
+                    }
+                },
+                senders: {
+                    send: function(path,val) {
+                        DBG("stateSender -> tvoc changed. transforming for mbed. ",path,val)
+                        return val;
+                    }
+                },
+                oma: {
+                    path: '/3325/1/5700',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_tvoc',
+                    value: 0,
+                    type: 'Int',
+                    stateSender: 'send',
+                    eventSender: 'send'
+                }
+            }
+        },
+
+        'Facades/Pressure': function() {
+            return {
+                deviceJS: {
+                    state: 'pressure'
+                },
+                handlers: {
+                    get_pressure: function(Dev) {
+                        DBG("Got Facade/Pressure 'get_pressure'")
+                        return Dev.get('pressure')
+                    }
+                },
+                senders: {
+                    send: function(path,val) {
+                        DBG("stateSender -> pressure changed. transforming for mbed. ",path,val)
+                        return val;
+                    }
+                },
+                oma: {
+                    path: '/3323/0/5700',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_pressure',
+                    value: 0,
+                    type: 'Float',
+                    stateSender: 'send',
+                    eventSender: 'send'
+                }
+            }
+        },
+
+        'Facades/HasButton': function() {
+            return {
+                deviceJS: {
+                    state: 'button'
+                },
+                handlers: {
+                    get_button: function(Dev) {
+                        DBG("Got Facade/HasButton 'get_button'")
+                        return Dev.get('button')
+                    }
+                },
+                senders: {
+                    send: function(path,val) {
+                        DBG("stateSender -> button changed. transforming for mbed. ",path,val)
+                        if (val) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
+                    }
+                },
+                oma: {
+                    path: '/3347/1/5500',
+                    initSend: true,
+                    getHandler: 'get_button',
+                    stateSender: 'send',
+                    operation: ['GET'],
+                    value: 0,
+                    type: 'Int'
+                }
+            }
+        },
+
+        'Facades/TapDetection': function() {
+            return {
+                deviceJS: {
+                    state: 'tap'
+                },
+                handlers: {
+                    get_tap: function(Dev) {
+                        DBG("Got Facade/TapDetection 'get_tap'")
+                        return Dev.get('tap')
+                    }
+                },
+                senders: {
+                    send: function(path,val) {
+                        DBG("stateSender -> tap changed. transforming for mbed. ",path,val)
+                        return JSON.stringify(val);
+                    }
+                },
+                oma: {
+                    path: '/26241/0/26241',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_tap',
+                    value: "{}",
+                    stateSender: 'send',
+                    eventSender: 'send'
+                }
+            }
+        },
+
+        'Facades/Orientation': function() {
+            return {
+                deviceJS: {
+                    state: 'orientation'
+                },
+                handlers: {
+                    get_orientation: function(Dev) {
+                        DBG("Got Facade/SignalStrength 'get_orientation'")
+                        return Dev.get('orientation')
+                    }
+                },
+                senders: {
+                    send: function(path,val) {
+                        DBG("stateSender -> orientation changed. transforming for mbed. ",path,val)
+                        return val;
+                    }
+                },
+                oma: {
+                    path: '/26242/0/26242',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_orientation',
+                    value: 0,
+                    type: 'Int',
+                    stateSender: 'send',
+                    eventSender: 'send'
+                }
+            }
+        },
+
+        'Facades/Quaternion': function() {
+            return {
+                deviceJS: {
+                    state: 'quaternion'
+                },
+                handlers: {
+                    get_quaternion: function(Dev) {
+                        DBG("Got Facade/Quaternion 'get_quaternion'")
+                        return Dev.get('quaternion')
+                    }
+                },
+                senders: {
+                    send: function(path,val) {
+                        DBG("stateSender -> quaternion changed. transforming for mbed. ",path,val)
+                        return JSON.stringify(val);
+                    }
+                },
+                oma: {
+                    path: '/26243/0/26241',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_quaternion',
+                    value: "{}",
+                    stateSender: 'send',
+                    eventSender: 'send'
+                }
+            }
+        },
+
+        'Facades/StepCounter': function() {
+            return {
+                deviceJS: {
+                    state: 'stepcounter'
+                },
+                handlers: {
+                    get_stepcounter: function(Dev) {
+                        DBG("Got Facade/StepCounter 'get_stepcounter'")
+                        return Dev.get('stepcounter')
+                    }
+                },
+                senders: {
+                    send: function(path,val) {
+                        DBG("stateSender -> stepcounter changed. transforming for mbed. ",path,val)
+                        return JSON.stringify(val);
+                    }
+                },
+                oma: {
+                    path: '/26244/0/26241',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_stepcounter',
+                    value: "{}",
+                    stateSender: 'send',
+                    eventSender: 'send'
+                }
+            }
+        },
+
+        'Facades/EulerAngles': function() {
+            return {
+                deviceJS: {
+                    state: 'euler'
+                },
+                handlers: {
+                    get_euler: function(Dev) {
+                        DBG("Got Facade/EulerAngles 'get_euler'")
+                        return Dev.get('euler')
+                    }
+                },
+                senders: {
+                    send: function(path,val) {
+                        DBG("stateSender -> euler changed. transforming for mbed. ",path,val)
+                        return JSON.stringify(val);
+                    }
+                },
+                oma: {
+                    path: '/26245/0/26241',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_euler',
+                    value: "{}",
+                    stateSender: 'send',
+                    eventSender: 'send'
+                }
+            }
+        },
+
+        'Facades/Heading': function() {
+            return {
+                deviceJS: {
+                    state: 'heading'
+                },
+                handlers: {
+                    get_heading: function(Dev) {
+                        DBG("Got Facade/Heading 'get_heading'")
+                        return Dev.get('Heading')
+                    }
+                },
+                senders: {
+                    send: function(path,val) {
+                        DBG("stateSender -> Heading changed. transforming for mbed. ",path,val)
+                        return val;
+                    }
+                },
+                oma: {
+                    path: '/26246/0/26242',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_heading',
+                    value: 0,
+                    type: 'Int',
+                    stateSender: 'send',
+                    eventSender: 'send'
+                }
+            }
+        },
+
+        'Facades/Gyroscope': function() {
+            return {
+                deviceJS: {
+                    state: 'gyroscope'
+                },
+                handlers: {
+                    get_x: function(Dev) {
+                        DBG("Got Facade/Gyroscope 'get_x'")
+                        return Dev.get('gyroscope')
+                    },
+                    get_y: function(Dev) {
+                        DBG("Got Facade/Gyroscope 'get_y'")
+                        return Dev.get('gyroscope')
+                    },
+                    get_z: function(Dev) {
+                        DBG("Got Facade/Gyroscope 'get_z'")
+                        return Dev.get('gyroscope')
+                    }
+                },
+                senders: {
+                    send_x: function(path,val) {
+                        DBG("stateSender -> gyroscope changed. transforming for mbed. ",path,val)
+                        return val.x;
+                    },
+                    send_y: function(path,val) {
+                        DBG("stateSender -> gyroscope changed. transforming for mbed. ",path,val)
+                        return val.y;
+                    },
+                    send_z: function(path,val) {
+                        DBG("stateSender -> gyroscope changed. transforming for mbed. ",path,val)
+                        return val.z;
+                    }
+                },
+                oma: [{
+                    path: '/3334/0/5702',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_x',
+                    value: 1.0,
+                    type: 'Float',
+                    stateSender: 'send_x',
+                    eventSender: 'send_x'
+                },{
+                    path: '/3334/0/5703',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_y',
+                    value: 1.0,
+                    type: 'Float',
+                    stateSender: 'send_y',
+                    eventSender: 'send_y'
+                },{
+                    path: '/3334/0/5704',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_z',
+                    value: 1.0,
+                    type: 'Float',
+                    stateSender: 'send_z',
+                    eventSender: 'send_z'
+                }]
+            }
+        },
+
+        'Facades/Magnetometer': function() {
+            return {
+                deviceJS: {
+                    state: 'magnetometer'
+                },
+                handlers: {
+                    get_x: function(Dev) {
+                        DBG("Got Facade/Magnetometer 'get_x'")
+                        return Dev.get('magnetometer')
+                    },
+                    get_y: function(Dev) {
+                        DBG("Got Facade/Magnetometer 'get_y'")
+                        return Dev.get('magnetometer')
+                    },
+                    get_z: function(Dev) {
+                        DBG("Got Facade/Magnetometer 'get_z'")
+                        return Dev.get('magnetometer')
+                    }
+                },
+                senders: {
+                    send_x: function(path,val) {
+                        DBG("stateSender -> magnetometer changed. transforming for mbed. ",path,val)
+                        return val.x;
+                    },
+                    send_y: function(path,val) {
+                        DBG("stateSender -> magnetometer changed. transforming for mbed. ",path,val)
+                        return val.y;
+                    },
+                    send_z: function(path,val) {
+                        DBG("stateSender -> magnetometer changed. transforming for mbed. ",path,val)
+                        return val.z;
+                    }
+                },
+                oma: [{
+                    path: '/3314/0/5702',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_x',
+                    value: 1.0,
+                    type: 'Float',
+                    stateSender: 'send_x',
+                    eventSender: 'send_x'
+                },{
+                    path: '/3314/0/5703',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_y',
+                    value: 1.0,
+                    type: 'Float',
+                    stateSender: 'send_y',
+                    eventSender: 'send_y'
+                },{
+                    path: '/3314/0/5704',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_z',
+                    value: 1.0,
+                    type: 'Float',
+                    stateSender: 'send_z',
+                    eventSender: 'send_z'
+                }]
+            }
+        },
+
+        'Facades/Accelerometer': function() {
+            return {
+                deviceJS: {
+                    state: 'accelerometer'
+                },
+                handlers: {
+                    get_x: function(Dev) {
+                        DBG("Got Facade/Accelerometer 'get_x'")
+                        return Dev.get('accelerometer')
+                    },
+                    get_y: function(Dev) {
+                        DBG("Got Facade/Accelerometer 'get_y'")
+                        return Dev.get('accelerometer')
+                    },
+                    get_z: function(Dev) {
+                        DBG("Got Facade/Accelerometer 'get_z'")
+                        return Dev.get('accelerometer')
+                    }
+                },
+                senders: {
+                    send_x: function(path,val) {
+                        DBG("stateSender -> accelerometer changed. transforming for mbed. ",path,val)
+                        return val.x;
+                    },
+                    send_y: function(path,val) {
+                        DBG("stateSender -> accelerometer changed. transforming for mbed. ",path,val)
+                        return val.y;
+                    },
+                    send_z: function(path,val) {
+                        DBG("stateSender -> accelerometer changed. transforming for mbed. ",path,val)
+                        return val.z;
+                    }
+                },
+                oma: [{
+                    path: '/3313/0/5702',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_x',
+                    value: 1.0,
+                    type: 'Float',
+                    stateSender: 'send_x',
+                    eventSender: 'send_x'
+                },{
+                    path: '/3313/0/5703',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_y',
+                    value: 1.0,
+                    type: 'Float',
+                    stateSender: 'send_y',
+                    eventSender: 'send_y'
+                },{
+                    path: '/3313/0/5704',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_z',
+                    value: 1.0,
+                    type: 'Float',
+                    stateSender: 'send_z',
+                    eventSender: 'send_z'
+                }]
+            }
+        },
+
+        'Facades/GravitySensor': function() {
+            return {
+                deviceJS: {
+                    state: 'gravity'
+                },
+                handlers: {
+                    get_x: function(Dev) {
+                        DBG("Got Facade/GravitySensor 'get_x'")
+                        return Dev.get('gravity')
+                    },
+                    get_y: function(Dev) {
+                        DBG("Got Facade/GravitySensor 'get_y'")
+                        return Dev.get('gravity')
+                    },
+                    get_z: function(Dev) {
+                        DBG("Got Facade/GravitySensor 'get_z'")
+                        return Dev.get('gravity')
+                    }
+                },
+                senders: {
+                    send_x: function(path,val) {
+                        DBG("stateSender -> gravity changed. transforming for mbed. ",path,val)
+                        return val.x;
+                    },
+                    send_y: function(path,val) {
+                        DBG("stateSender -> gravity changed. transforming for mbed. ",path,val)
+                        return val.y;
+                    },
+                    send_z: function(path,val) {
+                        DBG("stateSender -> gravity changed. transforming for mbed. ",path,val)
+                        return val.z;
+                    }
+                },
+                oma: [{
+                    path: '/3313/1/5702',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_x',
+                    value: 1.0,
+                    type: 'Float',
+                    stateSender: 'send_x',
+                    eventSender: 'send_x'
+                },{
+                    path: '/3313/1/5703',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_y',
+                    value: 1.0,
+                    type: 'Float',
+                    stateSender: 'send_y',
+                    eventSender: 'send_y'
+                },{
+                    path: '/3313/1/5704',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_z',
+                    value: 1.0,
+                    type: 'Float',
+                    stateSender: 'send_z',
+                    eventSender: 'send_z'
+                }]
+            }
+        },
+
+        'Facades/Color': function() {
+            return {
+               deviceJS: {
+                    state: 'color'
+                },
+                handlers: {
+                    get_color: function(Dev) {
+                        DBG("Got Facade/Color 'get_color'")
+                        return Dev.get('color')
+                    },
+                    post: function(route,value){}
+                },
+                senders: {
+                    state_set: function(path,val) {
+                        DBG("stateSender -> color changed. transforming for mbed. ",path,val)
+                        // should return the transformed value:
+                        return "" + val.red + "," + val.green + "," + val.blue + "," + val.clear;
+                    }
+                },
+
+                oma:{
+                    path: '/3335/1/5706',
+                    operation: ['GET'],
+                    initSend: true,
+                    value: "0,0,0",
+                    getHandler: 'get_color',
+                    stateSender: 'state_set'
+                }
+            }
+        },
+
+        'Facades/RGB': function() {
+            return {
+                deviceJS: {
+                    state: 'rgb'
+                },
+                handlers: {
+                    put_rgb: function(Dev,op,route,value){
+                        DBG("Got Facade/RGB 'put_rgb' -> put(",route,value,")")
+                        if(typeof value == 'string') {
+                            var vals = value.split(',')
+                            if(vals.length == 4) {
+                                var rgb = {
+                                    mode: vals[0],
+                                    data: {
+                                        r: parseFloat(vals[1]),
+                                        g: parseFloat(vals[2]),
+                                        b: parseFloat(vals[3])
+                                    }
+                                }
+                                return Dev.set('rgb',rgb)
+                            }
+                            return Promise.reject('malformed value')
+                        } else {
+                            return Promise.reject('invalid value')
+                        }
+                    },
+                    get_rgb: function(Dev) {
+                        DBG("Got Facade/RGB 'get_rgb'")
+                        return Dev.get('rgb')
+                    }
+                },
+                senders: {
+                    send: function(path,val) {
+                        DBG("stateSender -> rgb changed. transforming for mbed. ",path,val)
+                        return "" + val.mode + "," + val.data.r + "," + val.data.g + "," + val.data.b;
+                    }
+                },
+                oma: {
+                    path: '/3335/2/5706',
+                    operation: ['PUT','GET'],
+                    initSend:true,
+                    getHandler: 'get_rgb',
+                    handler: 'put_rgb',
+                    value: "0,0,0",
+                    stateSender: 'send',
+                    eventSender: 'send'
+                }
             }
         },
 
