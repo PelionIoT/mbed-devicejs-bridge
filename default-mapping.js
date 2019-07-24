@@ -2099,6 +2099,153 @@ module.exports = {
             }
         },
 
+        'Facades/TimeOfFlight': function() {
+            return {
+                deviceJS: {
+                    state: 'timeOfFlight'
+                },
+                handlers: {
+                    get_timeOfFlight: function(Dev) {
+                        DBG("Got Facade/TimeOfFlight 'get_timeOfFlight'")
+                        return Dev.get('timeOfFlight')
+                    }
+                },
+                senders: {
+                    send: function(path,val) {
+                        DBG("stateSender -> timeOfFlight changed. transforming for mbed. ",path,val)
+                        return val;
+                    }
+                },
+                oma: {
+                    path: '/3330/0/5700',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_timeOfFlight',
+                    value: 0,
+                    type: 'Int',
+                    stateSender: 'send',
+                    eventSender: 'send'
+                }
+            }
+        },
+        'Facades/GasResistance': function() {
+            return {
+                deviceJS: {
+                    state: 'gasResistance'
+                },
+                handlers: {
+                    get_gasResistance: function(Dev) {
+                        DBG("Got Facade/GasResistance 'get_gasResistance'")
+                        return Dev.get('gasResistance')
+                    }
+                },
+                senders: {
+                    send: function(path,val) {
+                        DBG("stateSender -> gasResistance changed. transforming for mbed. ",path,val)
+                        return val;
+                    }
+                },
+                oma: {
+                    path: '/10242/0/26248',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_gasResistance',
+                    value: 0,
+                    type: 'Int',
+                    stateSender: 'send',
+                    eventSender: 'send'
+                }
+            }
+        },
+        'Facades/AirQualityAccuracyScore': function() {
+            return {
+                deviceJS: {
+                    state: 'airQualityAccuracyScore'
+                },
+                handlers: {
+                    get_airQualityAccuracyScore: function(Dev) {
+                        DBG("Got Facade/AirQualityAccuracyScore 'get_airQualityAccuracyScore'")
+                        return Dev.get('airQualityAccuracyScore')
+                    }
+                },
+                senders: {
+                    send: function(path,val) {
+                        DBG("stateSender -> airQualityAccuracyScore changed. transforming for mbed. ",path,val)
+                        return val;
+                    }
+                },
+                oma: {
+                    path: '/26243/0/26253',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_airQualityAccuracyScore',
+                    value: 0,
+                    type: 'Int',
+                    stateSender: 'send',
+                    eventSender: 'send'
+                }
+            }
+        },
+
+        'Facades/AirQualityScore': function() {
+            return {
+                deviceJS: {
+                    state: 'airQualityScore'
+                },
+                handlers: {
+                    get_airQualityScore: function(Dev) {
+                        DBG("Got Facade/AirQualityScore 'get_airQualityScore'")
+                        return Dev.get('airQualityScore')
+                    }
+                },
+                senders: {
+                    send: function(path,val) {
+                        DBG("stateSender -> airQualityScore changed. transforming for mbed. ",path,val)
+                        return val;
+                    }
+                },
+                oma: {
+                    path: '/26243/0/26252',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_airQualityScore',
+                    value: 0,
+                    type: 'Int',
+                    stateSender: 'send',
+                    eventSender: 'send'
+                }
+            }
+        },
+
+        'Facades/BVOC': function() {
+            return {
+                deviceJS: {
+                    state: 'bvoc'
+                },
+                handlers: {
+                    get_bvoc: function(Dev) {
+                        DBG("Got Facade/BVOC 'get_bvoc'")
+                        return Dev.get('bvoc')
+                    }
+                },
+                senders: {
+                    send: function(path,val) {
+                        DBG("stateSender -> bvoc changed. transforming for mbed. ",path,val)
+                        return val;
+                    }
+                },
+                oma: {
+                    path: '/26242/0/26251',
+                    operation: ['GET'],
+                    initSend:true,
+                    getHandler: 'get_bvoc',
+                    value: 0,
+                    type: 'Int',
+                    stateSender: 'send',
+                    eventSender: 'send'
+                }
+            }
+        },
         'Facades/TVOC': function() {
             return {
                 deviceJS: {
@@ -2147,7 +2294,7 @@ module.exports = {
                     }
                 },
                 oma: {
-                    path: '/3323/0/5700',
+                    path: '/3315/0/5700',
                     operation: ['GET'],
                     initSend:true,
                     getHandler: 'get_pressure',
