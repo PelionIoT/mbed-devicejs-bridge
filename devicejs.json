@@ -17,12 +17,12 @@
   },
   "homepage": "https://github.com/armPelionEdge/mbed-devicejs-bridge#readme",
   "dependencies": {
-    "devjs-utils": "git+ssh://github.com/armPelionEdge/devjs-utils.git",
-    "devjs-configurator": "git+ssh://git@github.com/armPelionEdge/devjs-configurator.git#master",
+    "devjs-utils": "https://github.com/armPelionEdge/devjs-utils.git",
+    "devjs-configurator": "https://github.com/armPelionEdge/devjs-configurator.git",
     "mbed-cloud-sdk":"*",
     "handlebars": "*",
     "node-wget": "^0.4.2"
-  },  
+  },
   "devicejs": {
     "interfaces": [
         "./mbed-devicejs-bridge-interface.json"
