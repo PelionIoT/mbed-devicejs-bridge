@@ -1097,7 +1097,8 @@ module.exports = {
             // /5850 IPSO "on/off"
             return {
                 deviceJS: {
-                    state: 'power'
+                    state: 'power',
+                    event: 'power'
                 },
                 handlers: {
                     put: function(Dev,op,route,value){
@@ -1130,6 +1131,7 @@ module.exports = {
                     getHandler: 'get_power',
                     handler: 'put',
                     stateSender: 'send',
+                    eventSender: 'send',
                     value: false
                 }
             }
@@ -2849,6 +2851,108 @@ module.exports = {
                     stateSender: 'send',
                     eventSender: 'send'
                 }
+            }
+        },
+
+        'Core/Interfaces/Metadata': function() {
+            return {
+                deviceJS: {
+                },
+                handlers: {
+                    get_deviceName: function(Dev) {
+                        DBG("Got Core/Interfaces/Metadata 'get_deviceName'")
+                        return Dev.call('metadata', "deviceName")
+                    },
+                    get_manufacturerName: function(Dev) {
+                        DBG("Got Core/Interfaces/Metadata 'get_manufacturerName'")
+                        return Dev.call('metadata', "manufacturerName")
+                    },
+                    get_modelNumber: function(Dev) {
+                        DBG("Got Core/Interfaces/Metadata 'get_modelNumber'")
+                        return Dev.call('metadata', "modelNumber")
+                    },
+                    get_serialNumber: function(Dev) {
+                        DBG("Got Core/Interfaces/Metadata 'get_serialNumber'")
+                        return Dev.call('metadata', "serialNumber")
+                    },
+                    get_hardwareRevision: function(Dev) {
+                        DBG("Got Core/Interfaces/Metadata 'get_hardwareRevision'")
+                        return Dev.call('metadata', "hardwareRevision")
+                    },
+                    get_softwareRevision: function(Dev) {
+                        DBG("Got Core/Interfaces/Metadata 'get_softwareRevision'")
+                        return Dev.call('metadata', "softwareRevision")
+                    }
+                },
+                senders: {
+                    send_deviceName: function(path,val) {
+                        DBG("stateSender -> deviceName changed. transforming for mbed. ",path,val)
+                        if(typeof val == 'object')
+                            return val.deviceName;
+                    },
+                    send_manufacturerName: function(path,val) {
+                        DBG("stateSender -> manufacturerName changed. transforming for mbed. ",path,val)
+                        if(typeof val == 'object')
+                            return val.manufacturerName;
+                    },
+                    send_modelNumber: function(path,val) {
+                        DBG("stateSender -> modelNumber changed. transforming for mbed. ",path,val)
+                        if(typeof val == 'object')
+                            return val.modelNumber;
+                    },
+                    send_serialNumber: function(path,val) {
+                        DBG("stateSender -> serialNumber changed. transforming for mbed. ",path,val)
+                        if(typeof val == 'object')
+                            return val.serialNumber;
+                    },
+                    send_hardwareRevision: function(path,val) {
+                        DBG("stateSender -> hardwareRevision changed. transforming for mbed. ",path,val)
+                        if(typeof val == 'object')
+                            return val.hardwareRevision;
+                    },
+                    send_softwareRevision: function(path,val) {
+                        DBG("stateSender -> softwareRevision changed. transforming for mbed. ",path,val)
+                        if(typeof val == 'object')
+                            return val.softwareRevision;
+                    }
+                },
+                oma: [{
+                    path: '/3/0/0',
+                    operation: ['GET'],
+                    initSend:false,
+                    getHandler: 'get_manufacturerName',
+                    stateSender: 'send_manufacturerName'
+                },{
+                    path: '/3/0/1',
+                    operation: ['GET'],
+                    initSend:false,
+                    getHandler: 'get_modelNumber',
+                    stateSender: 'send_modelNumber'
+                },{
+                    path: '/3/0/2',
+                    operation: ['GET'],
+                    initSend:false,
+                    getHandler: 'get_serialNumber',
+                    stateSender: 'send_serialNumber'
+                },{
+                    path: '/3/0/18',
+                    operation: ['GET'],
+                    initSend:false,
+                    getHandler: 'get_hardwareRevision',
+                    stateSender: 'send_hardwareRevision'
+                },{
+                    path: '/3/0/19',
+                    operation: ['GET'],
+                    initSend:false,
+                    getHandler: 'get_softwareRevision',
+                    stateSender: 'send_softwareRevision'
+                },{
+                    path: '/10255/0/3',
+                    operation: ['GET'],
+                    initSend:false,
+                    getHandler: 'get_deviceName',
+                    stateSender: 'send_deviceName'
+                }]
             }
         },
 
