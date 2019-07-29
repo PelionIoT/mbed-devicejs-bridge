@@ -2523,60 +2523,49 @@ module.exports = {
                     state: 'gyroscope'
                 },
                 handlers: {
-                    get_x: function(Dev) {
-                        DBG("Got Facade/Gyroscope 'get_x'")
-                        return Dev.get('gyroscope')
-                    },
-                    get_y: function(Dev) {
-                        DBG("Got Facade/Gyroscope 'get_y'")
-                        return Dev.get('gyroscope')
-                    },
-                    get_z: function(Dev) {
-                        DBG("Got Facade/Gyroscope 'get_z'")
+                    get_gyroscope: function(Dev) {
+                        DBG("Got Facade/Gyroscope 'get_gyroscope'")
                         return Dev.get('gyroscope')
                     }
                 },
                 senders: {
-                    send_x: function(path,val) {
+                    send: function(path,val) {
                         DBG("stateSender -> gyroscope changed. transforming for mbed. ",path,val)
-                        return val.x;
-                    },
-                    send_y: function(path,val) {
-                        DBG("stateSender -> gyroscope changed. transforming for mbed. ",path,val)
-                        return val.y;
-                    },
-                    send_z: function(path,val) {
-                        DBG("stateSender -> gyroscope changed. transforming for mbed. ",path,val)
-                        return val.z;
+                        if(typeof val == 'object') {
+                            if (path == '/3334/0/5702') return val.x;
+                            else if (path == '/3334/0/5703') return val.y;
+                            else if (path == '/3334/0/5704') return val.z;
+                            else return null
+                        } else return null
                     }
                 },
                 oma: [{
                     path: '/3334/0/5702',
                     operation: ['GET'],
                     initSend:true,
-                    getHandler: 'get_x',
+                    getHandler: 'get_gyroscope',
                     value: 1.0,
                     type: 'Float',
-                    stateSender: 'send_x',
-                    eventSender: 'send_x'
+                    stateSender: 'send',
+                    eventSender: 'send'
                 },{
                     path: '/3334/0/5703',
                     operation: ['GET'],
                     initSend:true,
-                    getHandler: 'get_y',
+                    getHandler: 'get_gyroscope',
                     value: 1.0,
                     type: 'Float',
-                    stateSender: 'send_y',
-                    eventSender: 'send_y'
+                    stateSender: 'send',
+                    eventSender: 'send'
                 },{
                     path: '/3334/0/5704',
                     operation: ['GET'],
                     initSend:true,
-                    getHandler: 'get_z',
+                    getHandler: 'get_gyroscope',
                     value: 1.0,
                     type: 'Float',
-                    stateSender: 'send_z',
-                    eventSender: 'send_z'
+                    stateSender: 'send',
+                    eventSender: 'send'
                 }]
             }
         },
@@ -2587,60 +2576,49 @@ module.exports = {
                     state: 'magnetometer'
                 },
                 handlers: {
-                    get_x: function(Dev) {
-                        DBG("Got Facade/Magnetometer 'get_x'")
-                        return Dev.get('magnetometer')
-                    },
-                    get_y: function(Dev) {
-                        DBG("Got Facade/Magnetometer 'get_y'")
-                        return Dev.get('magnetometer')
-                    },
-                    get_z: function(Dev) {
-                        DBG("Got Facade/Magnetometer 'get_z'")
+                    get_magnetometer: function(Dev) {
+                        DBG("Got Facade/Magnetometer 'get_magnetometer'")
                         return Dev.get('magnetometer')
                     }
                 },
                 senders: {
-                    send_x: function(path,val) {
+                    send: function(path,val) {
                         DBG("stateSender -> magnetometer changed. transforming for mbed. ",path,val)
-                        return val.x;
-                    },
-                    send_y: function(path,val) {
-                        DBG("stateSender -> magnetometer changed. transforming for mbed. ",path,val)
-                        return val.y;
-                    },
-                    send_z: function(path,val) {
-                        DBG("stateSender -> magnetometer changed. transforming for mbed. ",path,val)
-                        return val.z;
+                        if(typeof val == 'object') {
+                            if (path == '/3314/0/5702') return val.x;
+                            else if (path == '/3314/0/5703') return val.y;
+                            else if (path == '/3314/0/5704') return val.z;
+                            else return null
+                        } else return null
                     }
                 },
                 oma: [{
                     path: '/3314/0/5702',
                     operation: ['GET'],
                     initSend:true,
-                    getHandler: 'get_x',
+                    getHandler: 'get_magnetometer',
                     value: 1.0,
                     type: 'Float',
-                    stateSender: 'send_x',
-                    eventSender: 'send_x'
+                    stateSender: 'send',
+                    eventSender: 'send'
                 },{
                     path: '/3314/0/5703',
                     operation: ['GET'],
                     initSend:true,
-                    getHandler: 'get_y',
+                    getHandler: 'get_magnetometer',
                     value: 1.0,
                     type: 'Float',
-                    stateSender: 'send_y',
-                    eventSender: 'send_y'
+                    stateSender: 'send',
+                    eventSender: 'send'
                 },{
                     path: '/3314/0/5704',
                     operation: ['GET'],
                     initSend:true,
-                    getHandler: 'get_z',
+                    getHandler: 'get_magnetometer',
                     value: 1.0,
                     type: 'Float',
-                    stateSender: 'send_z',
-                    eventSender: 'send_z'
+                    stateSender: 'send',
+                    eventSender: 'send'
                 }]
             }
         },
@@ -2651,60 +2629,49 @@ module.exports = {
                     state: 'accelerometer'
                 },
                 handlers: {
-                    get_x: function(Dev) {
-                        DBG("Got Facade/Accelerometer 'get_x'")
-                        return Dev.get('accelerometer')
-                    },
-                    get_y: function(Dev) {
-                        DBG("Got Facade/Accelerometer 'get_y'")
-                        return Dev.get('accelerometer')
-                    },
-                    get_z: function(Dev) {
-                        DBG("Got Facade/Accelerometer 'get_z'")
+                    get_accelerometer: function(Dev) {
+                        DBG("Got Facade/Accelerometer 'get_accelerometer'")
                         return Dev.get('accelerometer')
                     }
                 },
                 senders: {
-                    send_x: function(path,val) {
+                    send: function(path,val) {
                         DBG("stateSender -> accelerometer changed. transforming for mbed. ",path,val)
-                        return val.x;
-                    },
-                    send_y: function(path,val) {
-                        DBG("stateSender -> accelerometer changed. transforming for mbed. ",path,val)
-                        return val.y;
-                    },
-                    send_z: function(path,val) {
-                        DBG("stateSender -> accelerometer changed. transforming for mbed. ",path,val)
-                        return val.z;
+                        if(typeof val == 'object') {
+                            if (path == '/3313/0/5702') return val.x;
+                            else if (path == '/3313/0/5703') return val.y;
+                            else if (path == '/3313/0/5704') return val.z;
+                            else return null
+                        } else return null
                     }
                 },
                 oma: [{
                     path: '/3313/0/5702',
                     operation: ['GET'],
                     initSend:true,
-                    getHandler: 'get_x',
+                    getHandler: 'get_accelerometer',
                     value: 1.0,
                     type: 'Float',
-                    stateSender: 'send_x',
-                    eventSender: 'send_x'
+                    stateSender: 'send',
+                    eventSender: 'send'
                 },{
                     path: '/3313/0/5703',
                     operation: ['GET'],
                     initSend:true,
-                    getHandler: 'get_y',
+                    getHandler: 'get_accelerometer',
                     value: 1.0,
                     type: 'Float',
-                    stateSender: 'send_y',
-                    eventSender: 'send_y'
+                    stateSender: 'send',
+                    eventSender: 'send'
                 },{
                     path: '/3313/0/5704',
                     operation: ['GET'],
                     initSend:true,
-                    getHandler: 'get_z',
+                    getHandler: 'get_accelerometer',
                     value: 1.0,
                     type: 'Float',
-                    stateSender: 'send_z',
-                    eventSender: 'send_z'
+                    stateSender: 'send',
+                    eventSender: 'send'
                 }]
             }
         },
@@ -2715,60 +2682,49 @@ module.exports = {
                     state: 'gravity'
                 },
                 handlers: {
-                    get_x: function(Dev) {
-                        DBG("Got Facade/GravitySensor 'get_x'")
-                        return Dev.get('gravity')
-                    },
-                    get_y: function(Dev) {
-                        DBG("Got Facade/GravitySensor 'get_y'")
-                        return Dev.get('gravity')
-                    },
-                    get_z: function(Dev) {
-                        DBG("Got Facade/GravitySensor 'get_z'")
+                    get_gravity: function(Dev) {
+                        DBG("Got Facade/GravitySensor 'get_gravity'")
                         return Dev.get('gravity')
                     }
                 },
                 senders: {
-                    send_x: function(path,val) {
+                    send: function(path,val) {
                         DBG("stateSender -> gravity changed. transforming for mbed. ",path,val)
-                        return val.x;
-                    },
-                    send_y: function(path,val) {
-                        DBG("stateSender -> gravity changed. transforming for mbed. ",path,val)
-                        return val.y;
-                    },
-                    send_z: function(path,val) {
-                        DBG("stateSender -> gravity changed. transforming for mbed. ",path,val)
-                        return val.z;
+                        if(typeof val == 'object') {
+                            if(path == '/3313/1/5702') return val.x;
+                            else if(path == '/3313/1/5703') return val.y;
+                            else if(path == '/3313/1/5704') return val.z;
+                            else return null
+                        } else return null
                     }
                 },
                 oma: [{
                     path: '/3313/1/5702',
                     operation: ['GET'],
                     initSend:true,
-                    getHandler: 'get_x',
+                    getHandler: 'get_gravity',
                     value: 1.0,
                     type: 'Float',
-                    stateSender: 'send_x',
-                    eventSender: 'send_x'
+                    stateSender: 'send',
+                    eventSender: 'send'
                 },{
                     path: '/3313/1/5703',
                     operation: ['GET'],
                     initSend:true,
-                    getHandler: 'get_y',
+                    getHandler: 'get_gravity',
                     value: 1.0,
                     type: 'Float',
-                    stateSender: 'send_y',
-                    eventSender: 'send_y'
+                    stateSender: 'send',
+                    eventSender: 'send'
                 },{
                     path: '/3313/1/5704',
                     operation: ['GET'],
                     initSend:true,
-                    getHandler: 'get_z',
+                    getHandler: 'get_gravity',
                     value: 1.0,
                     type: 'Float',
-                    stateSender: 'send_z',
-                    eventSender: 'send_z'
+                    stateSender: 'send',
+                    eventSender: 'send'
                 }]
             }
         },
@@ -2980,71 +2936,23 @@ module.exports = {
                     state: 'deviceInformation'
                 },
                 handlers: {
-                    get_deviceName: function(Dev) {
-                        DBG("Got Core/Interfaces/Metadata 'get_deviceName'")
-                        return Dev.get('deviceInformation')
-                    },
-                    get_manufacturerName: function(Dev) {
-                        DBG("Got Core/Interfaces/Metadata 'get_manufacturerName'")
-                        return Dev.get('deviceInformation')
-                    },
-                    get_modelNumber: function(Dev) {
-                        DBG("Got Core/Interfaces/Metadata 'get_modelNumber'")
-                        return Dev.get('deviceInformation')
-                    },
-                    get_serialNumber: function(Dev) {
-                        DBG("Got Core/Interfaces/Metadata 'get_serialNumber'")
-                        return Dev.get('deviceInformation')
-                    },
-                    get_hardwareRevision: function(Dev) {
-                        DBG("Got Core/Interfaces/Metadata 'get_hardwareRevision'")
-                        return Dev.get('deviceInformation')
-                    },
-                    get_softwareRevision: function(Dev) {
-                        DBG("Got Core/Interfaces/Metadata 'get_softwareRevision'")
+                    get_deviceInformation: function(Dev) {
+                        DBG("Got Core/Interfaces/Metadata 'get_deviceInformation'")
                         return Dev.get('deviceInformation')
                     }
                 },
                 senders: {
-                    send_deviceName: function(path,val) {
+                    send: function(path,val) {
                         DBG("stateSender -> deviceName changed. transforming for mbed. ",path,val)
-                        if(typeof val == 'object')
-                            return val.deviceName;
-                        else
-                            return null
-                    },
-                    send_manufacturerName: function(path,val) {
-                        DBG("stateSender -> manufacturerName changed. transforming for mbed. ",path,val)
-                        if(typeof val == 'object')
-                            return val.manufacturerName;
-                        else
-                            return null
-                    },
-                    send_modelNumber: function(path,val) {
-                        DBG("stateSender -> modelNumber changed. transforming for mbed. ",path,val)
-                        if(typeof val == 'object')
-                            return val.modelNumber;
-                        else
-                            return null
-                    },
-                    send_serialNumber: function(path,val) {
-                        DBG("stateSender -> serialNumber changed. transforming for mbed. ",path,val)
-                        if(typeof val == 'object')
-                            return val.serialNumber;
-                        else
-                            return null
-                    },
-                    send_hardwareRevision: function(path,val) {
-                        DBG("stateSender -> hardwareRevision changed. transforming for mbed. ",path,val)
-                        if(typeof val == 'object')
-                            return val.hardwareRevision;
-                        else
-                            return null
-                    },
-                    send_softwareRevision: function(path,val) {
-                        DBG("stateSender -> softwareRevision changed. transforming for mbed. ",path,val)
-                        if(typeof val == 'object')
-                            return val.softwareRevision;
+                        if(typeof val == 'object') {
+                            if(path == '/10255/0/3') return val.deviceName;
+                            else if(path == '/3/0/0') return val.manufacturerName;
+                            else if(path == '/3/0/1') return val.modelNumber;
+                            else if(path == '/3/0/2') return val.serialNumber;
+                            else if(path == '/3/0/18') return val.hardwareRevision;
+                            else if(path == '/3/0/19') return val.softwareRevision;
+                            else return null
+                        }
                         else
                             return null
                     }
@@ -3054,43 +2962,43 @@ module.exports = {
                     operation: ['GET'],
                     initSend:true,
                     value: '',
-                    getHandler: 'get_manufacturerName',
-                    stateSender: 'send_manufacturerName'
+                    getHandler: 'get_deviceInformation',
+                    stateSender: 'send'
                 },{
                     path: '/3/0/1',
                     operation: ['GET'],
                     initSend:true,
                     value: '',
-                    getHandler: 'get_modelNumber',
-                    stateSender: 'send_modelNumber'
+                    getHandler: 'get_deviceInformation',
+                    stateSender: 'send'
                 },{
                     path: '/3/0/2',
                     operation: ['GET'],
                     initSend:true,
                     value: '',
-                    getHandler: 'get_serialNumber',
-                    stateSender: 'send_serialNumber'
+                    getHandler: 'get_deviceInformation',
+                    stateSender: 'send'
                 },{
                     path: '/3/0/18',
                     operation: ['GET'],
                     initSend:true,
                     value: '',
-                    getHandler: 'get_hardwareRevision',
-                    stateSender: 'send_hardwareRevision'
+                    getHandler: 'get_deviceInformation',
+                    stateSender: 'send'
                 },{
                     path: '/3/0/19',
                     operation: ['GET'],
                     initSend:true,
                     value: '',
-                    getHandler: 'get_softwareRevision',
-                    stateSender: 'send_softwareRevision'
+                    getHandler: 'get_deviceInformation',
+                    stateSender: 'send'
                 },{
                     path: '/10255/0/3',
                     operation: ['GET'],
                     initSend:true,
                     value: '',
-                    getHandler: 'get_deviceName',
-                    stateSender: 'send_deviceName'
+                    getHandler: 'get_deviceInformation',
+                    stateSender: 'send'
                 }]
             }
         },
