@@ -2932,49 +2932,168 @@ module.exports = {
                 oma: [{
                     path: '/3/0/0',
                     operation: ['GET'],
-                    initSend:false,
+                    initSend:true,
                     value: '',
                     getHandler: 'get_manufacturerName',
                     stateSender: 'send_manufacturerName'
                 },{
                     path: '/3/0/1',
                     operation: ['GET'],
-                    initSend:false,
+                    initSend:true,
                     value: '',
                     getHandler: 'get_modelNumber',
                     stateSender: 'send_modelNumber'
                 },{
                     path: '/3/0/2',
                     operation: ['GET'],
-                    initSend:false,
+                    initSend:true,
                     value: '',
                     getHandler: 'get_serialNumber',
                     stateSender: 'send_serialNumber'
                 },{
                     path: '/3/0/18',
                     operation: ['GET'],
-                    initSend:false,
+                    initSend:true,
                     value: '',
                     getHandler: 'get_hardwareRevision',
                     stateSender: 'send_hardwareRevision'
                 },{
                     path: '/3/0/19',
                     operation: ['GET'],
-                    initSend:false,
+                    initSend:true,
                     value: '',
                     getHandler: 'get_softwareRevision',
                     stateSender: 'send_softwareRevision'
                 },{
                     path: '/10255/0/3',
                     operation: ['GET'],
-                    initSend:false,
+                    initSend:true,
                     value: '',
                     getHandler: 'get_deviceName',
                     stateSender: 'send_deviceName'
                 }]
             }
         },
-
+        'Facades/DeviceInformation': function() {
+            return {
+                deviceJS: {
+                    state: 'deviceInformation'
+                },
+                handlers: {
+                    get_deviceName: function(Dev) {
+                        DBG("Got Core/Interfaces/Metadata 'get_deviceName'")
+                        return Dev.get('deviceInformation')
+                    },
+                    get_manufacturerName: function(Dev) {
+                        DBG("Got Core/Interfaces/Metadata 'get_manufacturerName'")
+                        return Dev.get('deviceInformation')
+                    },
+                    get_modelNumber: function(Dev) {
+                        DBG("Got Core/Interfaces/Metadata 'get_modelNumber'")
+                        return Dev.get('deviceInformation')
+                    },
+                    get_serialNumber: function(Dev) {
+                        DBG("Got Core/Interfaces/Metadata 'get_serialNumber'")
+                        return Dev.get('deviceInformation')
+                    },
+                    get_hardwareRevision: function(Dev) {
+                        DBG("Got Core/Interfaces/Metadata 'get_hardwareRevision'")
+                        return Dev.get('deviceInformation')
+                    },
+                    get_softwareRevision: function(Dev) {
+                        DBG("Got Core/Interfaces/Metadata 'get_softwareRevision'")
+                        return Dev.get('deviceInformation')
+                    }
+                },
+                senders: {
+                    send_deviceName: function(path,val) {
+                        DBG("stateSender -> deviceName changed. transforming for mbed. ",path,val)
+                        if(typeof val == 'object')
+                            return val.deviceName;
+                        else
+                            return null
+                    },
+                    send_manufacturerName: function(path,val) {
+                        DBG("stateSender -> manufacturerName changed. transforming for mbed. ",path,val)
+                        if(typeof val == 'object')
+                            return val.manufacturerName;
+                        else
+                            return null
+                    },
+                    send_modelNumber: function(path,val) {
+                        DBG("stateSender -> modelNumber changed. transforming for mbed. ",path,val)
+                        if(typeof val == 'object')
+                            return val.modelNumber;
+                        else
+                            return null
+                    },
+                    send_serialNumber: function(path,val) {
+                        DBG("stateSender -> serialNumber changed. transforming for mbed. ",path,val)
+                        if(typeof val == 'object')
+                            return val.serialNumber;
+                        else
+                            return null
+                    },
+                    send_hardwareRevision: function(path,val) {
+                        DBG("stateSender -> hardwareRevision changed. transforming for mbed. ",path,val)
+                        if(typeof val == 'object')
+                            return val.hardwareRevision;
+                        else
+                            return null
+                    },
+                    send_softwareRevision: function(path,val) {
+                        DBG("stateSender -> softwareRevision changed. transforming for mbed. ",path,val)
+                        if(typeof val == 'object')
+                            return val.softwareRevision;
+                        else
+                            return null
+                    }
+                },
+                oma: [{
+                    path: '/3/0/0',
+                    operation: ['GET'],
+                    initSend:true,
+                    value: '',
+                    getHandler: 'get_manufacturerName',
+                    stateSender: 'send_manufacturerName'
+                },{
+                    path: '/3/0/1',
+                    operation: ['GET'],
+                    initSend:true,
+                    value: '',
+                    getHandler: 'get_modelNumber',
+                    stateSender: 'send_modelNumber'
+                },{
+                    path: '/3/0/2',
+                    operation: ['GET'],
+                    initSend:true,
+                    value: '',
+                    getHandler: 'get_serialNumber',
+                    stateSender: 'send_serialNumber'
+                },{
+                    path: '/3/0/18',
+                    operation: ['GET'],
+                    initSend:true,
+                    value: '',
+                    getHandler: 'get_hardwareRevision',
+                    stateSender: 'send_hardwareRevision'
+                },{
+                    path: '/3/0/19',
+                    operation: ['GET'],
+                    initSend:true,
+                    value: '',
+                    getHandler: 'get_softwareRevision',
+                    stateSender: 'send_softwareRevision'
+                },{
+                    path: '/10255/0/3',
+                    operation: ['GET'],
+                    initSend:true,
+                    value: '',
+                    getHandler: 'get_deviceName',
+                    stateSender: 'send_deviceName'
+                }]
+            }
+        },
         'Core/Interfaces/FirmwareUpdate': function() {
             return {
                 deviceJS: {
