@@ -1576,7 +1576,7 @@ module.exports = {
                     }
                 },
                 oma:{
-                    path: '/3305/0/5800',
+                    path: '/3316/0/5700',
                     operation: ['GET'],
                     initSend: true,
                     getHandler: 'get_battery',
@@ -1587,12 +1587,12 @@ module.exports = {
                 },
                 static_oma: [
                     {   // min possible value
-                        path: '/3305/0/5803',
+                        path: '/3316/0/5601',
                         operation: ['GET'],
                         value: 0
                     },
                     {   // max possible value
-                        path: '/3305/0/5804',
+                        path: '/3316/0/5602',
                         operation: ['GET'],
                         value: 100
                     // },
@@ -2089,7 +2089,7 @@ module.exports = {
                     }
                 },
                 oma: {
-                    path: '/3325/0/5700',
+                    path: '/26243/0/26250',
                     operation: ['GET'],
                     initSend:true,
                     getHandler: 'get_co2',
@@ -2937,7 +2937,7 @@ module.exports = {
                 },
                 handlers: {
                     get_deviceInformation: function(Dev) {
-                        DBG("Got Core/Interfaces/Metadata 'get_deviceInformation'")
+                        DBG("Got Facades/DeviceInformation 'get_deviceInformation'")
                         return Dev.get('deviceInformation')
                     }
                 },
