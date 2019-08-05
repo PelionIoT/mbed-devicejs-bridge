@@ -2123,8 +2123,8 @@ module.exports = {
                     operation: ['GET'],
                     initSend:true,
                     getHandler: 'get_timeOfFlight',
-                    value: 0,
-                    type: 'Int',
+                    value: 1.0,
+                    type: 'Float',
                     stateSender: 'send',
                     eventSender: 'send'
                 }
